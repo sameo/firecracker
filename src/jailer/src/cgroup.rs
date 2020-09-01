@@ -23,7 +23,7 @@ const CONTROLLER_PIDS: &str = "pids";
 // The list of cgroup controllers we're interested in.
 const CONTROLLERS: [&str; 3] = [CONTROLLER_CPU, CONTROLLER_CPUSET, CONTROLLER_PIDS];
 const PROC_MOUNTS: &str = "/proc/mounts";
-const NODE_TO_CPULIST: &str = "/sys/devices/system/node/node";
+// const NODE_TO_CPULIST: &str = "/sys/devices/system/node/node";
 
 pub struct Cgroup {
     tasks_files: Vec<PathBuf>,
@@ -206,13 +206,13 @@ impl Cgroup {
                 // Similar to how numactl library does, we are copying the contents of
                 // /sys/devices/system/node/nodeX/cpulist to the cpuset.cpus file for ensuring
                 // correct numa cpu assignment.
-                let line = readln_special(&PathBuf::from(format!(
-                    "{}{}/cpulist",
-                    NODE_TO_CPULIST, numa_node
-                )))?;
-                path_buf.push(CPUSET_CPUS);
-                writeln_special(&path_buf, line)?;
-                path_buf.pop();
+                // let line = readln_special(&PathBuf::from(format!(
+                //     "{}{}/cpulist",
+                //     NODE_TO_CPULIST, numa_node
+                // )))?;
+                // path_buf.push(CPUSET_CPUS);
+                // writeln_special(&path_buf, line)?;
+                // path_buf.pop();
             }
 
             // And now add "tasks" to get the path of the corresponding tasks file.
