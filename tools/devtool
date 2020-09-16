@@ -202,7 +202,7 @@ ensure_devctr() {
     # download it, if we don't.
     [[ $(docker images -q "$DEVCTR_IMAGE" | wc -l) -gt 0 ]] || {
         say "About to pull docker image $DEVCTR_IMAGE"
-        get_user_confirmation || die "Aborted."
+        #get_user_confirmation || die "Aborted."
 
         docker pull "${DEVCTR_IMAGE}"
 
